@@ -9,7 +9,7 @@ const {inputText,setInputText, setTicker} = props;
     e.preventDefault()
   setTicker(inputText)
   }
-  console.log(inputText)
+  //console.log(inputText)
   return (
     <form onSubmit={onSubmitHandler}>
       

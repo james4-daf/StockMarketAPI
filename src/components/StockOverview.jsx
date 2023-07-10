@@ -1,18 +1,10 @@
-import './App.css'
-import { useQuery } from "react-query";
-import SearchBar from './components/SearchBar';
-import OpenHours from './components/OpenHours';
-import {useState} from 'react'
-
-
-
 function FetchTickerOverview(ticker) {
   return fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=5QO2BAEYGTAZ5C78`)
     .then((res) => res.json())
 }
+export default function StockOverview(props) {
+  const ticker = props
 
-
- function StockOverview({ ticker }) {
   const userQuery = useQuery(
     [ticker],
     () => FetchTickerOverview(ticker)
@@ -48,22 +40,4 @@ function FetchTickerOverview(ticker) {
     
   ):null
 
-}
-
-export default function App() {
-
-  const [inputText, setInputText] = useState('')
-    const [ticker, setTicker] = useState(false)
-  return (
-    
-  <main>
-    <OpenHours />
-    <SearchBar inputText={inputText} setInputText={setInputText} setTicker={setTicker}/>
-    {ticker &&
-    <StockOverview ticker={ticker} />
-    }
-    
-  </main>
-  )
-  
 }
